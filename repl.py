@@ -1,17 +1,20 @@
 import argparse
 import pprint
+
 from client import Client
-    
+
+
 def main(host, port, verbose):
     c = Client(host=host, port=port, verbose=verbose)
     while True:
-        text = raw_input("sql> ").strip()
+        text = input("sql> ").strip()
         if text.lower() == "quit":
             break
         elif text:
             result = c.query(text)
             if result:
                 pprint.pprint(result)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Redis SQL client REPL.')
